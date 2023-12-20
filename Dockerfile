@@ -5,6 +5,7 @@ ENV     DANTE_SHA 4c97cff23e5c9b00ca1ec8a95ab22972813921d7fbf60fc453e3e06382fc38
 
 COPY    sockd.conf /etc/
 COPY    user-config.sh /
+RUN     chmod 0700 /user-config.sh
 
 RUN     apk add --no-cache --virtual .build-deps \
         build-base \
@@ -23,7 +24,7 @@ RUN     apk add --no-cache --virtual .build-deps \
         apk add --no-cache \
         linux-pam
         
-RUN  ["/user-config.sh"]
+RUN     /user-config.sh
 
 EXPOSE  1080
 CMD     ["sockd"]
